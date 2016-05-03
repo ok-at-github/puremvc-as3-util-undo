@@ -120,8 +120,12 @@ package org.puremvc.as3.utilities.undo.controller
 			try
 			{
 				var commandInstance : ICommand = new undoCmdClass();
-				// Try to inject the multiton
+				/** 
+				 * This is the only difference to the standard version:
+				 * Inject the multiton key here cause it seems that it's crucial to make the multicore version work
+				 */
 				commandInstance.initializeNotifier(multitonKey);
+				
 				commandInstance.execute( _note );
 			}
 			catch ( err:Error )
